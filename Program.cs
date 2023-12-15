@@ -1,5 +1,5 @@
-﻿using LohnbitsRestApiGateway.Data.Session;
-using System.Runtime.CompilerServices;
+﻿using LohnbitsRestApiGateway.Data.MasterData;
+using LohnbitsRestApiGateway.Data.Session;
 
 namespace LohnbitsRestApiGatewayClient
 {
@@ -11,9 +11,11 @@ namespace LohnbitsRestApiGatewayClient
             var loginResult = WebApiBase.RequestPost<LoginResult>("session/login", "", loginRequest);
             string bearerToken = loginResult?.Token ?? "";
 
-            var testResult1 = WebApiBase.RequestGet<Task>("session/logout", bearerToken);
-            var testResult2 = WebApiBase.RequestGet<Task>("session/logout", bearerToken);
+            var dokumenttypenRequest = new SelectDocumentTypesRequest();
+            dokumenttypenRequest.FkMandantLfdNr = 4848;
+            var dokumenttypenResult = WebApiBase.RequestGet<SelectDocumentTypesResult>("masterData/selectDocumentTypes", bearerToken, dokumenttypenRequest);
 
+            WebApiBase.RequestGet<Task>("session/logout", bearerToken);
         }
     }
 }
