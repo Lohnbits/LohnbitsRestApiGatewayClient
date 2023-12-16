@@ -1,5 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 
+#nullable enable
+
 namespace LohnbitsRestApiGateway.Data
 {
     public class BaseResult 

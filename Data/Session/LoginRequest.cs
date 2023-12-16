@@ -1,4 +1,6 @@
-﻿namespace LohnbitsRestApiGateway.Data.Session
+﻿#nullable enable
+
+namespace LohnbitsRestApiGateway.Data.Session
 {
     /// <summary>
     /// Die Struktur für einen Login-Request.

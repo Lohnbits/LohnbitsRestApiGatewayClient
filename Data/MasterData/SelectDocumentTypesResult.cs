@@ -1,4 +1,6 @@
-﻿namespace LohnbitsRestApiGateway.Data.MasterData
+﻿#nullable enable
+
+namespace LohnbitsRestApiGateway.Data.MasterData
 {
     public class SelectDocumentTypesResult : BaseResult
     {

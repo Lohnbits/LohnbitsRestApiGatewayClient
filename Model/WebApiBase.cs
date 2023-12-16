@@ -2,7 +2,7 @@
 using System.Net.Http.Headers;
 using System.Text;
 
-namespace LohnbitsRestApiGatewayClient
+namespace LohnbitsRestApiGatewayClient.Model
 {
     public class WebApiBase
     {
@@ -20,7 +20,7 @@ namespace LohnbitsRestApiGatewayClient
             return JsonConvert.DeserializeObject<T>(result);
         }
 
-        public async static Task<T?> RequestPostAsync<T>(string url, string token, object data) 
+        public async static Task<T?> RequestPostAsync<T>(string url, string token, object data)
         {
             string jsonParams = JsonConvert.SerializeObject(data);
             var result = await RequestPost(url, token, jsonParams);

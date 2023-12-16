@@ -1,21 +1,17 @@
-﻿namespace LohnbitsRestApiGateway.Data.MasterData
+﻿#nullable enable
+
+namespace LohnbitsRestApiGateway.Data.MasterData
 {
-    public class SelectDocumentTypesRequest
+    public class SelectDocumentTypesRequest 
     {
-        public SelectDocumentTypesRequest()
+        public SelectDocumentTypesRequest() 
         {
-            FkMandantLfdNr = 0;
-            Personalnummer = null;
-            InternetMandantLohnMitarbeiterLfdNr = null;
+            MandantLfdNr = 0;
             SpecialFunction = null;
         }
 
-        public int FkMandantLfdNr { set; get; }
+        public int MandantLfdNr { set; get; }
 
-        public int? Personalnummer { set; get; }
-
-        public int? InternetMandantLohnMitarbeiterLfdNr { set; get; }
-
-        public string SpecialFunction { set; get;}
+        public string? SpecialFunction { set; get;}
     }
 }

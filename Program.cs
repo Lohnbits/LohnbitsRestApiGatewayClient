@@ -1,5 +1,4 @@
-﻿using LohnbitsRestApiGateway.Data.MasterData;
-using LohnbitsRestApiGateway.Data.Session;
+﻿using LohnbitsRestApiGatewayClient.Samples;
 
 namespace LohnbitsRestApiGatewayClient
 {
@@ -7,18 +6,7 @@ namespace LohnbitsRestApiGatewayClient
     {
         static void Main(string[] args)
         {
-            var loginRequest = new LoginRequest("mischa", "hallo");
-            var loginResult = WebApiBase.RequestGet<LoginResult>("session/login", "", loginRequest);
-            string bearerToken = loginResult?.Token ?? "";
-
-            var customersResult = WebApiBase.RequestGet<SelectCustomersResult>("masterData/selectCustomers", bearerToken);
-            var mandantLfdNr = customersResult.Customers[0].MandantLfdNr;
-
-            var dokumenttypenRequest = new SelectDocumentTypesRequest();
-            dokumenttypenRequest.FkMandantLfdNr = mandantLfdNr;
-            var dokumenttypenResult = WebApiBase.RequestGet<SelectDocumentTypesResult>("masterData/selectDocumentTypes", bearerToken, dokumenttypenRequest);
-
-            WebApiBase.RequestGet<Task>("session/logout", bearerToken);
+            UploadDocumentExample.Execute();
         }
     }
 }
