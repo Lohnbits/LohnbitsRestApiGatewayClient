@@ -51,6 +51,17 @@ namespace LohnbitsRestApiGatewayClient.Model
         }
 
         /// <summary>
+        /// gibt eine Liste der Mitarbeiter zurück
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public SelectEmployeesResult? SelectEmployees(SelectEmployeesRequest request)
+        {
+            if (request.MandantLfdNr == null && request.MandantGruppeLfdNr == null && request.Mandantennummer == null) request.MandantLfdNr = _mandantLfdNr;
+            return WebApiBase.RequestGet<SelectEmployeesResult>("masterData/selectEmployees", _bearerToken, request);
+        }
+
+        /// <summary>
         /// initialisiert den ersten Mandanten mit Zugriffsrechten
         /// </summary>
         /// <returns></returns>

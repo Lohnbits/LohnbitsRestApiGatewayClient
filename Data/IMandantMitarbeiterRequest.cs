@@ -8,7 +8,7 @@ namespace LohnbitsRestApiGateway.Data
 
         public int? Personalnummer { set; get; }
 
-        public string? BetrieblichePersonalnummer { set; get; }
+        public string? PersonalnummerBetrieblich { set; get; }
 
         public string? PersonalnummerZeiterfassung { set; get; }
 
