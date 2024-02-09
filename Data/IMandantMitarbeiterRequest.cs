@@ -6,6 +6,10 @@ namespace LohnbitsRestApiGateway.Data
     {
         public int? Mandantennummer { set; get; }
 
+        public int? MandantLfdNr { set; get; }
+
+        public int? MandantGruppeLfdNr { set; get; }
+
         public int? Personalnummer { set; get; }
 
         public string? PersonalnummerBetrieblich { set; get; }

@@ -11,6 +11,12 @@ namespace LohnbitsRestApiGateway.Data
             ErrorCode = eErrorCode.None;
         }
 
+        public BaseResult Error(eErrorCode errorCode)
+        {
+            ErrorCode = errorCode;
+            return this;
+        }
+
         public eErrorCode ErrorCode { get; set; }
 
         internal int StatusCode
@@ -44,7 +50,11 @@ namespace LohnbitsRestApiGateway.Data
             InvalidSessionId,
             AccessDenied,
             InvalidParameter,
-            InvalidCustomer
+            InvalidCustomer,
+            InvalidContent,
+            InvalidEmployee,
+            InvalidDocumentType,
+            DocumentUploadError
         }
     }
 }

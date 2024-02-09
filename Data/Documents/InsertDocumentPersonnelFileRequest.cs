@@ -2,26 +2,35 @@
 
 namespace LohnbitsRestApiGateway.Data.Documents
 {
-    public class InsertDocumentPersonnelFileRequest
+    public class InsertDocumentPersonnelFileRequest : IMandantMitarbeiterRequest
     {
         public InsertDocumentPersonnelFileRequest()
         {
             Mandantennummer = null;
+            MandantLfdNr = null;
+            MandantGruppeLfdNr = null;
             Personalnummer = null;
             PersonalnummerBetrieblich = null;
             PersonalnummerZeiterfassung = null;
             MandantMitarbeiterLfdNr = null;
-            DatumDokument = DateTime.MinValue;
-            LohnbitsDokumenttypLfdNr = 0;
             Bemerkung = "";
-            Dateiformat = null;
             Content = null;
+            Dateiformat = null;
+            Dateiname = null;
+            DatumDokument = DateTime.MinValue;
             IsAlteVersion = false;
-            IsSchnellstmoeglichBearbeiten = false;
             IsNichtFuerMonatserfassung = false;
+            IsSchnellstmoeglichBearbeiten = false;
+            LohnbitsDokumenttypLfdNr = 0;
+            ZeitraumMonatserfassung = null;
+            ZeitraumZuordnung = null;
         }
 
         public int? Mandantennummer { set; get; }
+
+        public int? MandantLfdNr { set; get; }
+
+        public int? MandantGruppeLfdNr { set; get; }
 
         public int? Personalnummer { set; get; }
 
@@ -32,6 +41,11 @@ namespace LohnbitsRestApiGateway.Data.Documents
         public int? MandantMitarbeiterLfdNr { set; get; }
 
         public string Bemerkung { set; get; }
+
+        /// <summary>
+        /// der optionale Dateiname des Dokuments
+        /// </summary>
+        public string? Dateiname { set; get; }
 
         /// <summary>
         /// Folgende Dateiformate sind zulässig:
@@ -53,7 +67,14 @@ namespace LohnbitsRestApiGateway.Data.Documents
         /// <summary>
         /// in diesem Abrechnungszeitraum soll das Dokument berücksichtigt werden
         /// </summary>
-        public DateTime ZeitraumMonatserfassung { set; get; }
+        public DateTime? ZeitraumMonatserfassung { set; get; }
+
+        /// <summary>
+        /// zu diesem Zeitraum soll das Dokument zugeordnet werden
+        /// Beispiel: ein Arbeitsvertrag, der ab dem 1. Januar 2024 gültig ist, wird am 15. Dezember 2023 unterschrieben
+        /// Dann ist DatumDokument der 15. Dezember 2023 und ZeitraumZuordnung der 1. Januar 2024
+        /// </summary>
+        public DateTime? ZeitraumZuordnung { set; get; }
 
         /// <summary>
         /// Der Dokumenttyp ist anzugeben. Gültige Dokumenttypen können mit SelectDocumentTypes abgefragt werden.

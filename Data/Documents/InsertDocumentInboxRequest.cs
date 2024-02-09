@@ -7,6 +7,8 @@ namespace LohnbitsRestApiGateway.Data.Documents
         public InsertDocumentInboxRequest()
         {
             Mandantennummer = null;
+            MandantLfdNr = null;
+            MandantGruppeLfdNr = null;
             Personalnummer = null;
             PersonalnummerBetrieblich = null;
             PersonalnummerZeiterfassung = null;
@@ -19,6 +21,10 @@ namespace LohnbitsRestApiGateway.Data.Documents
         }
 
         public int? Mandantennummer { set; get; }
+
+        public int? MandantLfdNr { set; get; }
+
+        public int? MandantGruppeLfdNr { set; get; }
 
         public int? Personalnummer { set; get; }
 
