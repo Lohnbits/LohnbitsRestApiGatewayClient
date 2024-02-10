@@ -10,7 +10,8 @@ namespace LohnbitsRestApiGatewayClient.Samples
         public static void Execute()
         {
             // Anmeldung am REST API Gateway mit Benutzername und Passwort und Erhalt des Bearer Tokens
-            var loginRequest = new LoginRequest("mischa", "hallo");
+            // Benutzername und Passwort werden in den Lohnbits Rest API Gateway Tools verwaltet
+            var loginRequest = new LoginRequest("lohnbitsUser", "lohnbitsPassword");
             var loginResult = WebApiBase.RequestGet<LoginResult>("session/login", "", loginRequest);
             var bearerToken = loginResult?.Token ?? "";
 
@@ -42,7 +43,7 @@ namespace LohnbitsRestApiGatewayClient.Samples
                 IsNichtFuerMonatserfassung = false,
                 IsAlteVersion = false,
                 IsSchnellstmoeglichBearbeiten = false,
-                Content = File.ReadAllBytes(@"C:\Users\mischa\Downloads\test.pdf"),
+                Content = File.ReadAllBytes(@"test.pdf"),
                 Bemerkung = "Testdokument"
             };
             var docResult = WebApiBase.RequestPost<InsertDocumentPersonnelFileResult>("documents/insertDocumentPersonnelFile", bearerToken, doc);
