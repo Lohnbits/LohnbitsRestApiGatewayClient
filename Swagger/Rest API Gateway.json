@@ -1,0 +1,668 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Lohnbits REST Gateway",
+    "description": "Endpunkte für das Lohnbits Gateway. Es wurde bewusst die Design-Entscheidung getroffen, auch bei GET-Requests einen JSON-Request-Body zu verwenden, um bei den Parametern sehr flexibel zu sein.",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/documents/insertDocumentPersonnelFile": {
+      "post": {
+        "tags": [
+          "Documents"
+        ],
+        "summary": "Upload eines Dokuments in die Personalakte",
+        "description": "<br>Dieses Dokument wird in der Personalakte abgelegt.\r\n<br>Der Mitarbeiter wird über das Feld MandantMitarbeiterLfdNr oder über die Konbination aus\r\n            Mandantennummer  / MandantLfdNr / MandantGruppeLfdNr und wahlweise Personalnummer / PersonalnummerBetrieblich / PersonalnummerZeiterfassung \r\n            ausgewählt.\r\n<br>Der Dokumenttyp ist anzugeben. Gültige Dokumenttypen können mit SelectDocumentTypes abgefragt werden.\r\n<br>Die Vorbelegung für das Dateiformat ist PDF.\r\n<br>Bemerkung ist KEIN Pflichtfeld.\r\n<br>Der Zeitraum für die Monatsdatenerfassung ist wichtig - es ist der Abrechnungszeitraum, in dem das\r\n            Dokument berücksichtigt werden soll.",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsertDocumentPersonnelFileRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsertDocumentPersonnelFileRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsertDocumentPersonnelFileRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InsertDocumentPersonnelFileResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/documents/insertDocumentInbox": {
+      "post": {
+        "tags": [
+          "Documents"
+        ],
+        "summary": "Upload eines Dokuments für den Posteingang.",
+        "description": "<br>Dieses Dokument wird der Personalabteilung als Aufgabe angezeigt. Dabei ist der richtige Mitarbeiter\r\n            schon zugeordnet.\r\n<br>Der Mitarbeiter wird über das Feld MandantMitarbeiterLfdNr oder über die Konbination aus\r\n            Mandantennummer / MandantLfdNr / MandantGruppeLfdNr und wahlweise Personalnummer / PersonalnummerBetrieblich / PersonalnummerZeiterfassung \r\n            ausgewählt.\r\n<br>Die Art des Dokuments ist nur für Spezialfälle wichtig. Bitte normalerweise mit SonstigeLohnunterlagen\r\n            vorbelegen - das passiert auch bei der Zuweisung von NULL.\r\n<br>Die Vorbelegung für das Dateiformat ist PDF.\r\n<br>Bemerkung ist KEIN Pflichtfeld.",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsertDocumentInboxRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsertDocumentInboxRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsertDocumentInboxRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InsertDocumentInboxResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/masterData/selectCustomers": {
+      "get": {
+        "tags": [
+          "MasterData"
+        ],
+        "summary": "Gibt alle Mandanten zurück, auf die der Benutzer Zugriff hat.",
+        "description": "<br>Diese Methode immer am Anfang aufrufen, um zu wissen, wie der Paramater MandantLfdNr zu füllen ist.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectCustomersResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/masterData/selectDocumentTypes": {
+      "get": {
+        "tags": [
+          "MasterData"
+        ],
+        "summary": "Gibt alle Dokumenttypen zurück",
+        "description": "<br>Mit dieser Methode kann der Benutzer eine Liste aller Dokumenttypen ermitteln.\r\n<br>Das Feld MandantLfdNr ist ein Mussfeld. Eine Liste aller Mandanten, auf die der Benutzer Zugriff hat, kann er mit der Methode \r\n            /api/masterData/selectCustomers ermitteln.\r\n<br>Die Special Function ist ein optionales Feld.\r\n<br>Die Kennung muss Zugriff auf die Personalakte haben.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectDocumentTypesRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectDocumentTypesRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectDocumentTypesRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectDocumentTypesResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/masterData/selectEmployees": {
+      "get": {
+        "tags": [
+          "MasterData"
+        ],
+        "summary": "Gibt alle Mitarbeiter zurück.",
+        "description": "<br>Mit dieser Methode kann der Benutzer eine Liste aller Mitarbeiter ermitteln.\r\n<br>Die Selektion erfolgt entweder über das Feld MandantLfdNr oder über das Feld Mandantennummer oder über das Feld MandantGruppeLfdNr.\r\n<br>Wenn isAktiveMitarbeiter gesetzt ist, werden nur die Mitarbeiter mit dem Status Aktiv zurückgegeben. Wichtig: ein Mitarbeiter ist aktiv, \r\n            wenn das Onboarding abgeschlossen ist und das Austrittsdatum weniger als zwei Monate vorbei ist.",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectEmployeesRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectEmployeesRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectEmployeesRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectEmployeesResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/session/login": {
+      "get": {
+        "tags": [
+          "Session"
+        ],
+        "summary": "Login mit Benutzername und Passwort.",
+        "description": "<br>Mit dieser Methode meldet sich ein Benutzer mit Benutzernamen und Passwort an. \r\n<br>Es wird ein Bearer Token zurückgegeben, der für die weiteren Anfragen verwendet werden kann.\r\n<br>Es wird in jedem Fall für die Kennung das Recht MyZugriffPersonalakte.EnterpriseMitarbeiterliste benötigt.\r\n<br>Wichtig: Der Bearer Token ist nur eine Stunde gültig. Daher ist es nicht sinnvoll, eine Verbindung\r\n            zum Lohnbits Gateway lange offen zu halten.",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login erfolgreich",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Zugriff abgelehnt"
+          }
+        }
+      }
+    },
+    "/api/session/logout": {
+      "get": {
+        "tags": [
+          "Session"
+        ],
+        "summary": "Mit dieser Methode meldet sich der Benutzer ab.",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DataCustomer": {
+        "type": "object",
+        "properties": {
+          "mandantLfdNr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "mandantGruppeLfdNr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "mandantennummer": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bezeichnungBetrieb": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DataDocumentType": {
+        "type": "object",
+        "properties": {
+          "lohnbitsDokumenttypLfdNr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bezeichnungGlobal": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DataEmployee": {
+        "type": "object",
+        "properties": {
+          "mandantLfdNr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "mandantMitarbeiterLfdNr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "mandantennummer": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vorname": {
+            "type": "string",
+            "nullable": true
+          },
+          "familienname": {
+            "type": "string",
+            "nullable": true
+          },
+          "personalnummer": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bezeichnungBetrieb": {
+            "type": "string",
+            "nullable": true
+          },
+          "personalnummerBetrieblich": {
+            "type": "string",
+            "nullable": true
+          },
+          "personalnummerZeiterfassung": {
+            "type": "string",
+            "nullable": true
+          },
+          "kurzname": {
+            "type": "string",
+            "description": "Familienname, Vorname (Personalnummer)",
+            "nullable": true
+          },
+          "kurzname2": {
+            "type": "string",
+            "description": "Famlienname, Vorname",
+            "nullable": true
+          },
+          "eintritt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "austritt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "statusMitarbeiter": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InsertDocumentInboxRequest": {
+        "type": "object",
+        "properties": {
+          "mandantennummer": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "mandantLfdNr": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "mandantGruppeLfdNr": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "personalnummer": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "personalnummerBetrieblich": {
+            "type": "string",
+            "nullable": true
+          },
+          "personalnummerZeiterfassung": {
+            "type": "string",
+            "nullable": true
+          },
+          "mandantMitarbeiterLfdNr": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "art": {
+            "type": "string",
+            "description": "Eine Art zur Vorkategorisierung der Dokumente.\r\nFolgende Werte sind zulässig:\r\n\r\n- Unbekannt,\r\n- Krankmeldung,\r\n- SonstigeLohnunterlagen,\r\n- KeineLohnunterlagen,\r\n- Arbeitsvertrag,\r\n- BescheinigungUeberLohnsteuerabzug,\r\n- Sozialversicherungsausweis,\r\n- MitgliedsbescheinigungKrankenaksse,\r\n- BescheinigungPrivateKrankenversicherung,\r\n- VlVertrag,\r\n- NachweisElterneigenschaft,\r\n- VertragBetrieblicheAltersversorgung,\r\n- Schwerbehindertenausweis,\r\n- Verschwiegenheitserklaerung,\r\n- NutzungsvereinbarungFuerBetriebsmittel,\r\n- FortbildungsvertragStudienkosten,\r\n- SonstigesOnboarding,\r\n- StammdatenBankverbindung,\r\n- MitarbeiterstammdatenBankverbindung,\r\n- MitarbeiterstammdatenKrankenkasse,\r\n- MitarbeiterstammdatenAdresse,\r\n- SchuelerStudentenBescheinigung\r\n\r\nWenn keine Art bekannt ist, bitte SonstigeLohnunterlagen verwenden.",
+            "nullable": true
+          },
+          "bemerkung": {
+            "type": "string",
+            "nullable": true
+          },
+          "dateiformat": {
+            "type": "string",
+            "description": "Folgende Dateiformate sind zulässig:\r\n\r\n- PDF\r\n- TIFF\r\n- JPG\r\n- PNG\r\n\r\nDas präferierte Dateiformat ist PDF.",
+            "nullable": true
+          },
+          "datumDokument": {
+            "type": "string",
+            "description": "das Belegdatum des Dokuments",
+            "format": "date-time"
+          },
+          "content": {
+            "type": "string",
+            "description": "der Inhalt des Dokuments als Byte-Array",
+            "format": "byte",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InsertDocumentInboxResult": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "$ref": "#/components/schemas/eErrorCode"
+          }
+        },
+        "additionalProperties": false
+      },
+      "InsertDocumentPersonnelFileRequest": {
+        "type": "object",
+        "properties": {
+          "mandantennummer": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "mandantLfdNr": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "mandantGruppeLfdNr": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "personalnummer": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "personalnummerBetrieblich": {
+            "type": "string",
+            "nullable": true
+          },
+          "personalnummerZeiterfassung": {
+            "type": "string",
+            "nullable": true
+          },
+          "mandantMitarbeiterLfdNr": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bemerkung": {
+            "type": "string",
+            "nullable": true
+          },
+          "dateiname": {
+            "type": "string",
+            "description": "der optionale Dateiname des Dokuments",
+            "nullable": true
+          },
+          "dateiformat": {
+            "type": "string",
+            "description": "Folgende Dateiformate sind zulässig:\r\n\r\n- PDF\r\n- TIFF\r\n- JPG\r\n- PNG\r\n\r\nDas präferierte Dateiformat ist PDF.",
+            "nullable": true
+          },
+          "datumDokument": {
+            "type": "string",
+            "description": "das Belegdatum des Dokuments",
+            "format": "date-time"
+          },
+          "zeitraumMonatserfassung": {
+            "type": "string",
+            "description": "in diesem Abrechnungszeitraum soll das Dokument berücksichtigt werden",
+            "format": "date-time",
+            "nullable": true
+          },
+          "zeitraumZuordnung": {
+            "type": "string",
+            "description": "zu diesem Zeitraum soll das Dokument zugeordnet werden\r\nBeispiel: ein Arbeitsvertrag, der ab dem 1. Januar 2024 gültig ist, wird am 15. Dezember 2023 unterschrieben\r\nDann ist DatumDokument der 15. Dezember 2023 und ZeitraumZuordnung der 1. Januar 2024",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lohnbitsDokumenttypLfdNr": {
+            "type": "integer",
+            "description": "Der Dokumenttyp ist anzugeben. Gültige Dokumenttypen können mit SelectDocumentTypes abgefragt werden.",
+            "format": "int32"
+          },
+          "isAlteVersion": {
+            "type": "boolean",
+            "description": "Handelt es sich um eine alte Version des Dokuments, die nur zu Archivierungszwecken hochgeladen wird?"
+          },
+          "isNichtFuerMonatserfassung": {
+            "type": "boolean",
+            "description": "dieses Dokument soll nicht bei den Monatsdaten erfasst werden, sondern ist nur für die Personalakte bestimmt"
+          },
+          "isSchnellstmoeglichBearbeiten": {
+            "type": "boolean",
+            "description": "dieses Dokument soll außerhalb der normalen Lohnabrechnung schnellstmöglich bearbeitet werden"
+          },
+          "content": {
+            "type": "string",
+            "description": "der Inhalt des Dokuments als Byte-Array",
+            "format": "byte",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InsertDocumentPersonnelFileResult": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "$ref": "#/components/schemas/eErrorCode"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoginRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Die Struktur für einen Login-Request."
+      },
+      "LoginResult": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "$ref": "#/components/schemas/eErrorCode"
+          },
+          "token": {
+            "type": "string",
+            "description": "das Bearertoken, das für die weiteren Anfragen verwendet werden kann.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Die Struktur für einen Login-Response. Sie enthält das Bearertoken, das für die weiteren Anfragen verwendet werden kann."
+      },
+      "SelectCustomersResult": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "$ref": "#/components/schemas/eErrorCode"
+          },
+          "customers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataCustomer"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SelectDocumentTypesRequest": {
+        "type": "object",
+        "properties": {
+          "mandantLfdNr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "specialFunction": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SelectDocumentTypesResult": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "$ref": "#/components/schemas/eErrorCode"
+          },
+          "documentTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataDocumentType"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SelectEmployeesRequest": {
+        "type": "object",
+        "properties": {
+          "mandantLfdNr": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "mandantGruppeLfdNr": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "mandantennummer": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isActiveEmployees": {
+            "type": "boolean",
+            "description": "sollen nur aktive Mitarbeiter zurückgegeben werden?",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SelectEmployeesResult": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "$ref": "#/components/schemas/eErrorCode"
+          },
+          "employees": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataEmployee"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "eErrorCode": {
+        "enum": [
+          "None",
+          "UnknownError",
+          "InvalidLogin",
+          "NoLohnbitsServerConnection",
+          "InvalidBeaer",
+          "LohnbitsServerError",
+          "InvalidSessionId",
+          "AccessDenied",
+          "InvalidParameter",
+          "InvalidCustomer",
+          "InvalidContent",
+          "InvalidEmployee",
+          "InvalidDocumentType",
+          "DocumentUploadError"
+        ],
+        "type": "string",
+        "description": "Liste der Fehlercodes"
+      }
+    }
+  }
+}

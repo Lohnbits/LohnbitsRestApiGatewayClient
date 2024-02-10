@@ -5,7 +5,7 @@ namespace LohnbitsRestApiGatewayClient.Samples
 {
     public class ServerModelExample
     {
-        public static void ExecuteModel()
+        public static void Execute()
         {
             var model = new ServerModel();
 
