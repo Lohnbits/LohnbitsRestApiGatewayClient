@@ -16,5 +16,8 @@ Das Lohnbits REST API Gateway ist nur zum Einsatz im lokalen Netzwerk geeignet.
 Für einen öffentlichen Zugriff im Internet reicht der Sicherheitsstandard nicht aus. 
 
 ### Beispielanwendung
+#### Erste Schritte
+Der Code im Verzeichnis Samples/FirstSteps zeigt, wie ein Benutzer authentifiziert, die Betriebe abfragt, auf die er Zugriff hat und sich anschließend wieder abmeldet.
+
 #### Dokument in die Personalakte hochladen
 Der Code im Verzeichnis Samples/UploadDocument zeigt, wie ein Dokument in die Personalakte hochgeladen wird.
