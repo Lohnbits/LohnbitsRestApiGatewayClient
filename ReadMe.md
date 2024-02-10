@@ -5,7 +5,7 @@ Das Lohnbits REST API Gateway stellt eine REST Schnittstelle zum Lohnbits Server
 
 Bevor das Gateway verwendet werden kann, muss mit den Lohnbits REST API Tools und einem Zugangsbarcode ein Benutzer eingerichtet werden.  
 
-Dieses Repository enthält eine Beispielanwendung in C#.  
+Dieses Repository enthält Beispielanwendungen in C#.  
   
 ### Swagger Dokumentation
 Die Dokumentation der Schnittstelle ist unter `/swagger` verfügbar.  
@@ -17,7 +17,7 @@ Für einen öffentlichen Zugriff im Internet reicht der Sicherheitsstandard nicht 
 
 ### Beispielanwendung
 #### Erste Schritte
-Der Code im Verzeichnis Samples/FirstSteps zeigt, wie ein Benutzer authentifiziert, die Betriebe abfragt, auf die er Zugriff hat und sich anschließend wieder abmeldet.
+Der Code im Verzeichnis Samples/FirstSteps zeigt, wie sich ein Benutzer authentifiziert, die Betriebe abfragt, auf die er Zugriff hat und sich anschließend wieder abmeldet.
 
 #### Dokument in die Personalakte hochladen
 Der Code im Verzeichnis Samples/UploadDocument zeigt, wie ein Dokument in die Personalakte hochgeladen wird.
