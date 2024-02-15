@@ -17,7 +17,11 @@ Für einen öffentlichen Zugriff im Internet reicht der Sicherheitsstandard nicht 
 
 ### Beispielanwendung
 #### Erste Schritte
-Der Code im Verzeichnis Samples/FirstSteps zeigt, wie sich ein Benutzer authentifiziert, die Betriebe abfragt, auf die er Zugriff hat und sich anschließend wieder abmeldet.
+Der Code im Verzeichnis Samples/FirstStepsExample.cs zeigt, wie sich ein Benutzer authentifiziert, die Betriebe abfragt, auf die er Zugriff hat und sich anschließend wieder abmeldet.
 
 #### Dokument in die Personalakte hochladen
-Der Code im Verzeichnis Samples/UploadDocument zeigt, wie ein Dokument in die Personalakte hochgeladen wird.
+Der Code im Verzeichnis Samples/UploadDocumentExample.cs zeigt, wie ein Dokument in die Personalakte hochgeladen wird.
+
+#### Dokument im Posteingang hochladen
+Der Code im Verzeichnis Samples/UploadDocumentInboxExample.cs zeigt, wie ein Dokument in den Posteingang hochgeladen wird.
+

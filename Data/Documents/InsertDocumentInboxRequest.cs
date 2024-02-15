@@ -14,6 +14,7 @@ namespace LohnbitsRestApiGateway.Data.Documents
             PersonalnummerZeiterfassung = null;
             MandantMitarbeiterLfdNr = null;
             DatumDokument = DateTime.MinValue;
+            Dateiname = null;
             Art = null;
             Bemerkung = "";
             Dateiformat = null;
@@ -68,6 +69,11 @@ namespace LohnbitsRestApiGateway.Data.Documents
         public string Bemerkung { set; get; }
 
         /// <summary>
+        /// der optionale Dateiname des Dokuments
+        /// </summary>
+        public string? Dateiname { set; get; }
+
+        /// <summary>
         /// Folgende Dateiformate sind zulässig:
         /// 
         /// - PDF
@@ -82,7 +88,7 @@ namespace LohnbitsRestApiGateway.Data.Documents
         /// <summary>
         /// das Belegdatum des Dokuments
         /// </summary>
-        public DateTime DatumDokument { set; get; }
+        public DateTime? DatumDokument { set; get; }
 
         /// <summary>
         /// der Inhalt des Dokuments als Byte-Array

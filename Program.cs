@@ -6,7 +6,7 @@ namespace LohnbitsRestApiGatewayClient
     {
         static void Main(string[] args)
         {
-            UploadDocumentExample.Execute();
+            UploadDocumentInboxExample.Execute();
         }
     }
 }

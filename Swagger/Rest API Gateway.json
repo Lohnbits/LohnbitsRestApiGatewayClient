@@ -395,6 +395,11 @@
             "type": "string",
             "nullable": true
           },
+          "dateiname": {
+            "type": "string",
+            "description": "der optionale Dateiname des Dokuments",
+            "nullable": true
+          },
           "dateiformat": {
             "type": "string",
             "description": "Folgende Dateiformate sind zulässig:\r\n\r\n- PDF\r\n- TIFF\r\n- JPG\r\n- PNG\r\n\r\nDas präferierte Dateiformat ist PDF.",
@@ -403,7 +408,8 @@
           "datumDokument": {
             "type": "string",
             "description": "das Belegdatum des Dokuments",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "content": {
             "type": "string",
