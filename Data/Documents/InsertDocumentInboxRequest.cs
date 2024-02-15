@@ -15,7 +15,6 @@ namespace LohnbitsRestApiGateway.Data.Documents
             MandantMitarbeiterLfdNr = null;
             DatumDokument = DateTime.MinValue;
             Dateiname = null;
-            Art = null;
             Bemerkung = "";
             Dateiformat = null;
             Content = null;
@@ -34,37 +33,6 @@ namespace LohnbitsRestApiGateway.Data.Documents
         public string? PersonalnummerZeiterfassung { set; get; }
 
         public int? MandantMitarbeiterLfdNr { set; get; }
-
-        /// <summary>
-        /// Eine Art zur Vorkategorisierung der Dokumente.
-        /// Folgende Werte sind zulässig:
-        /// 
-        /// - Unbekannt,
-        /// - Krankmeldung,
-        /// - SonstigeLohnunterlagen,
-        /// - KeineLohnunterlagen,
-        /// - Arbeitsvertrag,
-        /// - BescheinigungUeberLohnsteuerabzug,
-        /// - Sozialversicherungsausweis,
-        /// - MitgliedsbescheinigungKrankenaksse,
-        /// - BescheinigungPrivateKrankenversicherung,
-        /// - VlVertrag,
-        /// - NachweisElterneigenschaft,
-        /// - VertragBetrieblicheAltersversorgung,
-        /// - Schwerbehindertenausweis,
-        /// - Verschwiegenheitserklaerung,
-        /// - NutzungsvereinbarungFuerBetriebsmittel,
-        /// - FortbildungsvertragStudienkosten,
-        /// - SonstigesOnboarding,
-        /// - StammdatenBankverbindung,
-        /// - MitarbeiterstammdatenBankverbindung,
-        /// - MitarbeiterstammdatenKrankenkasse,
-        /// - MitarbeiterstammdatenAdresse,
-        /// - SchuelerStudentenBescheinigung
-        /// 
-        /// Wenn keine Art bekannt ist, bitte SonstigeLohnunterlagen verwenden.
-        /// </summary>
-        public string? Art { set; get; }
 
         public string Bemerkung { set; get; }
 
